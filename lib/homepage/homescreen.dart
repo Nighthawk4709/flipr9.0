@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                   flex: 10,
                   child: ListView.builder(
-                    itemCount: 20,
+                    itemCount: headers.length,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) {
                       return Row(

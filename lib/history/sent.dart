@@ -11,6 +11,7 @@ class Send extends StatefulWidget {
 }
 
 class _SendState extends State<Send> {
+  late GlobalKey<ScaffoldState> _key;
   final List _time = [
     "07:30",
     "21:15",
@@ -37,29 +38,35 @@ class _SendState extends State<Send> {
     "10:30",
     "11:45",
   ];
+  late List<String> headers;
 
-  final List headers = [
-    "Jayvardhan Patil",
-    "Shubham Pandit",
-    "Sourav Singh",
-    "Kunal Kapoor",
-    "Aniket Tiwari",
-    "Yashwardhan",
-    "Acer Supports",
-    "IRCTC",
-    "Working union",
-    "Varun Das",
-    "Jayvardhan Patil",
-    "Shubham Pandit",
-    "Sourav Singh",
-    "Kunal Kapoor",
-    "Aniket Tiwari",
-    "Yashwardhan",
-    "Acer Supports",
-    "IRCTC",
-    "Working union",
-    "Varun Das",
-  ];
+  void initState() {
+    headers = [
+      "Jayvardhan Patil",
+      "Shubham Pandit",
+      "Sourav Singh",
+      "Kunal Kapoor",
+      "Aniket Tiwari",
+      "Yashwardhan",
+      "Acer Supports",
+      "IRCTC",
+      "Working union",
+      "Varun Das",
+      "Jayvardhan Patil",
+      "Shubham Pandit",
+      "Sourav Singh",
+      "Kunal Kapoor",
+      "Aniket Tiwari",
+      "Yashwardhan",
+      "Acer Supports",
+      "IRCTC",
+      "Working union",
+      "Varun Das",
+    ];
+    _key = GlobalKey();
+    super.initState();
+  }
+
   final List _color = [
     Colors.purple,
     Colors.blueAccent,
@@ -88,18 +95,44 @@ class _SendState extends State<Send> {
     ExtendedColor.darkBlue,
     ExtendedColor.darkOrange,
   ];
+
+  void dispose() {
+    // disposing states
+    _key.currentState?.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.red[300],
-          toolbarHeight: MediaQuery.of(context).size.height * 0.125,
-          actions: [SearchBar()],
-        ),
-        body: Center(
-          child: Text("No email found"),
-        ),
-        /*body: Column(
+      key: _key,
+      appBar: AppBar(
+        backgroundColor: Colors.red[300],
+        toolbarHeight: MediaQuery.of(context).size.height * 0.125,
+        actions: [SearchBar()],
+      ),
+      body: RefreshIndicator(
+        onRefresh: () {
+          return Future.delayed(
+            Duration(seconds: 1),
+            () {
+              // here you have to update the db
+              // on refresh the newest updates will show in the bottom
+              // currently for test i have added two headers
+              setState(() {
+                headers.addAll(["Ionic", "Xamarin"]);
+              });
+
+              // showing snackbar
+              _key.currentState!.showSnackBar(
+                SnackBar(
+                  content: const Text('Page Refreshed'),
+                ),
+              );
+            },
+          );
+        },
+        child: Column(
           children: [
             SizedBox(
               height: 10,
@@ -117,7 +150,7 @@ class _SendState extends State<Send> {
             Expanded(
                 flex: 14,
                 child: ListView.builder(
-                  itemCount: 20,
+                  itemCount: headers.length,
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
                     return Row(
@@ -203,16 +236,18 @@ class _SendState extends State<Send> {
                   },
                 ))
           ],
-        ),*/
-        floatingActionButton: new FloatingActionButton(
-          backgroundColor: Colors.red[300],
-          onPressed: () {
-            Navigator.push(
-              context,
-              new MaterialPageRoute(builder: (context) => edit()),
-            );
-          },
-          child: Icon(Icons.edit),
-        ));
+        ),
+      ),
+      floatingActionButton: new FloatingActionButton(
+        backgroundColor: Colors.red[300],
+        onPressed: () {
+          Navigator.push(
+            context,
+            new MaterialPageRoute(builder: (context) => edit()),
+          );
+        },
+        child: Icon(Icons.edit),
+      ),
+    );
   }
 }

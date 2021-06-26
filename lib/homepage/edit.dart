@@ -1,7 +1,9 @@
 // here we have to make the ui for compose button
 
 import 'package:flipr/homepage/searchBar.dart';
+import 'package:flipr/homepage/test.dart';
 import 'package:flutter/material.dart';
+import 'mail.dart';
 
 final List dropdown = ["Attach a file", "Insert from drive"];
 
@@ -13,6 +15,11 @@ class edit extends StatefulWidget {
 }
 
 class _editState extends State<edit> {
+  final fromcontroller = new TextEditingController();
+  final tocontroller = new TextEditingController();
+  final subjectcontroller = new TextEditingController();
+  final emailcontroller = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +53,16 @@ class _editState extends State<edit> {
                 onPressed: () {
                   //add functionality here
                   // send button
+
+                  Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                          builder: (context) => Mail(
+                                s1: fromcontroller.text,
+                                s2: tocontroller.text,
+                                s3: subjectcontroller.text,
+                                s4: emailcontroller.text,
+                              )));
                 },
                 child: Icon(
                   Icons.send,
@@ -63,6 +80,7 @@ class _editState extends State<edit> {
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height * 0.12,
                   child: TextFormField(
+                    controller: fromcontroller,
                     decoration: InputDecoration(
                         hintText: "From:",
                         border: OutlineInputBorder(
@@ -76,6 +94,7 @@ class _editState extends State<edit> {
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height * 0.12,
                   child: TextFormField(
+                    controller: tocontroller,
                     decoration: InputDecoration(
                         hintText: "To:",
                         border: OutlineInputBorder(
@@ -89,6 +108,7 @@ class _editState extends State<edit> {
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height * 0.12,
                   child: TextFormField(
+                    controller: subjectcontroller,
                     decoration: InputDecoration(
                         hintText: "Subject:",
                         border: OutlineInputBorder(
@@ -102,6 +122,7 @@ class _editState extends State<edit> {
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height * 0.46,
                   child: TextFormField(
+                    controller: emailcontroller,
                     decoration: InputDecoration(
                         hintText: "Compose Email:",
                         border: OutlineInputBorder(
@@ -112,4 +133,26 @@ class _editState extends State<edit> {
           ),
         ));
   }
+}
+
+class Datafrom {
+  late String from;
+
+  Datafrom({required this.from});
+// ignore: empty_constructor_bodies
+}
+
+class Datato {
+  late String to;
+  Datato({required this.to});
+}
+
+class Datasub {
+  late String sub;
+  Datasub({required this.sub});
+}
+
+class Dataemail {
+  late String email;
+  Dataemail({required this.email});
 }
