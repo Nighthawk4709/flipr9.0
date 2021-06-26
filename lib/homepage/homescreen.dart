@@ -103,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: NavDrawer(),
         ),
         appBar: AppBar(
-          backgroundColor: Colors.red[400],
+          backgroundColor: Colors.red[300],
           toolbarHeight: MediaQuery.of(context).size.height * 0.125,
           actions: [SearchBar()],
         ),
@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     MediaQuery.of(context).size.height * 0.12,
                                 child: Center(
                                   child: CircleAvatar(
-                                    radius: 36.00,
+                                    radius: 24.00,
                                     backgroundColor: _color[index],
                                     child: Text(
                                       headers[index][0],

@@ -1,3 +1,4 @@
+import 'package:flipr/history/sent.dart';
 import 'package:flutter/material.dart';
 import 'package:lit_firebase_auth/lit_firebase_auth.dart';
 
@@ -13,143 +14,235 @@ class _NavDrawerState extends State<NavDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        // Important: Remove any padding from the ListView.
-        children: [
-          ListTile(
-            title: Text(
-              "WeMail",
-              style: TextStyle(color: Colors.red[300], fontSize: 20.0),
-            ),
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Row(children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.7,
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: FlatButton.icon(
-                    onPressed: () {},
-                    icon: Icon(Icons.mark_email_unread_outlined),
-                    label: Text("All inboxes")),
+          // Important: Remove any padding from the ListView.
+          children: [
+            ListTile(
+              title: Text(
+                "WeMail",
+                style: TextStyle(color: Colors.red[300], fontSize: 20.0),
               ),
             ),
-          ]),
-          Row(children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.7,
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: FlatButton.icon(
-                    onPressed: () {},
-                    icon: Icon(Icons.email_outlined),
-                    label: Text("Inboxes")),
-              ),
+            SizedBox(
+              height: 20.0,
             ),
-          ]),
-          SizedBox(
-            height: 10.0,
-          ),
-          Row(
-            children: [
-              Text(
-                "All labels",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              )
-            ],
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          Row(children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.7,
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: FlatButton.icon(
-                    onPressed: () {},
-                    icon: Icon(Icons.person),
-                    label: Text("Profile")),
-              ),
+            Row(children: [
+              InkWell(
+                  child: Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: FlatButton(
+                  minWidth: MediaQuery.of(context).size.width * 0.7,
+                  onPressed: () {},
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Row(
+                      children: [
+                        Icon(Icons.mark_email_unread_outlined),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text("All inboxes")
+                      ],
+                    ),
+                  ),
+                ),
+              ))
+            ]),
+            Row(children: [
+              InkWell(
+                  child: Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: FlatButton(
+                  minWidth: MediaQuery.of(context).size.width * 0.7,
+                  onPressed: () {},
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Row(
+                      children: [
+                        Icon(Icons.email_outlined),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text("Inboxes")
+                      ],
+                    ),
+                  ),
+                ),
+              ))
+            ]),
+            SizedBox(
+              height: 10.0,
             ),
-          ]),
-          Row(children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.7,
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: FlatButton.icon(
-                    onPressed: () {},
-                    icon: Icon(Icons.star_border),
-                    label: Text("Starred")),
-              ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  "All labels",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                )
+              ],
             ),
-          ]),
-          Row(children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.7,
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: FlatButton.icon(
-                    onPressed: () {},
-                    icon: Icon(Icons.timer_sharp),
-                    label: Text("Snoozed")),
-              ),
+            SizedBox(
+              height: 10.0,
             ),
+            Row(children: [
+              InkWell(
+                  child: Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: FlatButton(
+                  minWidth: MediaQuery.of(context).size.width * 0.7,
+                  onPressed: () {},
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Row(
+                      children: [
+                        Icon(Icons.person),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text("Profile")
+                      ],
+                    ),
+                  ),
+                ),
+              ))
+            ]),
+            Row(children: [
+              InkWell(
+                  child: Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: FlatButton(
+                  minWidth: MediaQuery.of(context).size.width * 0.7,
+                  onPressed: () {},
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Row(
+                      children: [
+                        Icon(Icons.star_border_outlined),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text("Starred")
+                      ],
+                    ),
+                  ),
+                ),
+              ))
+            ]),
+            Row(children: [
+              InkWell(
+                  child: Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: FlatButton(
+                  minWidth: MediaQuery.of(context).size.width * 0.7,
+                  onPressed: () {},
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Row(
+                      children: [
+                        Icon(Icons.timer),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text("Scheduled")
+                      ],
+                    ),
+                  ),
+                ),
+              ))
+            ]),
+            Row(children: [
+              InkWell(
+                  child: Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: FlatButton(
+                  minWidth: MediaQuery.of(context).size.width * 0.7,
+                  onPressed: () {},
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Row(
+                      children: [
+                        Icon(Icons.label_important_outline),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text("Important")
+                      ],
+                    ),
+                  ),
+                ),
+              ))
+            ]),
+            Row(children: [
+              InkWell(
+                  child: Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: FlatButton(
+                  minWidth: MediaQuery.of(context).size.width * 0.7,
+                  onPressed: () {},
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Row(
+                      children: [
+                        Icon(Icons.send),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text("Sent")
+                      ],
+                    ),
+                  ),
+                ),
+              ))
+            ]),
+            Row(children: [
+              InkWell(
+                  child: Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: FlatButton(
+                  minWidth: MediaQuery.of(context).size.width * 0.7,
+                  onPressed: () {},
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Row(
+                      children: [
+                        Icon(Icons.outbox_outlined),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text("Outbox")
+                      ],
+                    ),
+                  ),
+                ),
+              ))
+            ]),
+            Row(children: [
+              InkWell(
+                  child: Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: FlatButton(
+                  minWidth: MediaQuery.of(context).size.width * 0.7,
+                  onPressed: () {
+                    context.signOut();
+                  },
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Row(
+                      children: [
+                        Icon(Icons.logout_outlined),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text("Logout")
+                      ],
+                    ),
+                  ),
+                ),
+              ))
+            ]),
           ]),
-          Row(children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.7,
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: FlatButton.icon(
-                    onPressed: () {},
-                    icon: Icon(Icons.label_important_outline),
-                    label: Text("Important")),
-              ),
-            ),
-          ]),
-          Row(children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.7,
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: FlatButton.icon(
-                    onPressed: () {},
-                    icon: Icon(Icons.send_sharp),
-                    label: Text("Sent")),
-              ),
-            ),
-          ]),
-          Row(children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.7,
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: FlatButton.icon(
-                    onPressed: () {},
-                    icon: Icon(Icons.outbox_outlined),
-                    label: Text("Outbox")),
-              ),
-            ),
-          ]),
-          Row(children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.7,
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: FlatButton.icon(
-                    onPressed: () {
-                      context.signOut();
-                    },
-                    icon: Icon(Icons.logout),
-                    label: Text("Logout")),
-              ),
-            ),
-          ]),
-        ],
-      ),
     );
   }
 }
