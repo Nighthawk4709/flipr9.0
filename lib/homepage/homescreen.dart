@@ -1,5 +1,7 @@
 import 'dart:math';
+import 'package:flipr/homepage/edit.dart';
 
+import 'searchBar.dart';
 import 'package:flipr/homepage/drawer.dart';
 import 'package:flipr/homepage/searchBar.dart';
 import 'package:flipr/loginscreens/animation/background_painter.dart';
@@ -213,7 +215,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         floatingActionButton: new FloatingActionButton(
           backgroundColor: Colors.red[300],
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              new MaterialPageRoute(builder: (context) => edit()),
+            );
+          },
           child: Icon(Icons.edit),
         ));
   }
