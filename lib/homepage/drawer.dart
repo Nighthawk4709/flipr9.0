@@ -180,7 +180,10 @@ class _NavDrawerState extends State<NavDrawer> {
                 width: MediaQuery.of(context).size.width * 0.7,
                 child: FlatButton(
                   minWidth: MediaQuery.of(context).size.width * 0.7,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        new MaterialPageRoute(builder: (context) => Send()));
+                  },
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Row(
