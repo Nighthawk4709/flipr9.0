@@ -96,132 +96,125 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.70,
-        child: NavDrawer(),
-      ),
-      appBar: AppBar(
-        backgroundColor: Colors.red[400],
-        title: SearchBar(),
-        actions: [
-          ElevatedButton(
-              style: ElevatedButton.styleFrom(primary: Colors.red[400]),
-              onPressed: () {},
-              child: Icon(
-                Icons.person,
-                color: Colors.white,
-              )),
-        ],
-      ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-                flex: 1,
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "  INBOX",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                )),
-            Expanded(
-                flex: 10,
-                child: ListView.builder(
-                  itemCount: 20,
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (context, index) {
-                    return Row(
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.18,
-                              height: MediaQuery.of(context).size.height * 0.12,
-                              child: Center(
-                                child: CircleAvatar(
-                                  radius: 36.00,
-                                  backgroundColor: _color[index],
-                                  child: Text(
-                                    headers[index][0],
-                                    style: TextStyle(fontSize: 20.0),
+        drawer: SizedBox(
+          width: MediaQuery.of(context).size.width * 0.7,
+          child: NavDrawer(),
+        ),
+        appBar: AppBar(
+          backgroundColor: Colors.red[400],
+          toolbarHeight: MediaQuery.of(context).size.height * 0.125,
+          actions: [SearchBar()],
+        ),
+        body: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "  INBOX",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  )),
+              Expanded(
+                  flex: 10,
+                  child: ListView.builder(
+                    itemCount: 20,
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) {
+                      return Row(
+                        children: [
+                          Column(
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.18,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.12,
+                                child: Center(
+                                  child: CircleAvatar(
+                                    radius: 36.00,
+                                    backgroundColor: _color[index],
+                                    child: Text(
+                                      headers[index][0],
+                                      style: TextStyle(fontSize: 20.0),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            )
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.fromLTRB(8.0, 0, 0, 0),
-                              width: MediaQuery.of(context).size.width * 0.64,
-                              height: MediaQuery.of(context).size.height * 0.12,
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 10.0,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        headers[index],
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14),
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "lorem isidfks ifsps aksd asdkhadjad adsa\n akjsdhad asdkjahdadl asdkjadhad",
-                                        style: TextStyle(fontSize: 10),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        Column(children: [
-                          Container(
-                              width: MediaQuery.of(context).size.width * 0.18,
-                              height: MediaQuery.of(context).size.height * 0.12,
-                              padding: EdgeInsets.fromLTRB(18.0, 10.0, 0, 0),
-                              child: Column(
-                                children: [
-                                  Row(children: [
-                                    Text(
-                                      _time[index],
-                                      style: TextStyle(fontSize: 12.0),
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.fromLTRB(8.0, 0, 0, 0),
+                                width: MediaQuery.of(context).size.width * 0.64,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.12,
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 10.0,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          headers[index],
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14),
+                                        )
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "lorem isidfks ifsps aksd asdkhadjad adsa\n akjsdhad asdkjahdadl asdkjadhad",
+                                          style: TextStyle(fontSize: 10),
+                                        )
+                                      ],
                                     )
-                                  ]),
-                                  SizedBox(
-                                    height: 20.0,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(Icons.star_border_outlined)
-                                    ],
-                                  )
-                                ],
-                              ))
-                        ])
-                      ],
-                    );
-                  },
-                ))
-          ],
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(children: [
+                            Container(
+                                width: MediaQuery.of(context).size.width * 0.18,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.12,
+                                padding: EdgeInsets.fromLTRB(18.0, 10.0, 0, 0),
+                                child: Column(
+                                  children: [
+                                    Row(children: [
+                                      Text(
+                                        _time[index],
+                                        style: TextStyle(fontSize: 12.0),
+                                      )
+                                    ]),
+                                    SizedBox(
+                                      height: 20.0,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(Icons.star_border_outlined)
+                                      ],
+                                    )
+                                  ],
+                                ))
+                          ])
+                        ],
+                      );
+                    },
+                  ))
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: new FloatingActionButton.extended(
-        backgroundColor: Colors.red[200],
-        onPressed: () {},
-        label: Text("compose"),
-        icon: Icon(Icons.edit),
-      ),
-    );
+        floatingActionButton: new FloatingActionButton(
+          backgroundColor: Colors.red[300],
+          onPressed: () {},
+          child: Icon(Icons.edit),
+        ));
   }
 }
