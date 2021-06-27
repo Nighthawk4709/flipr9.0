@@ -38,8 +38,8 @@ class _MailState extends State<Mail> {
     //print(s3);
     //print(s4);
     await widget.api.createMail(s1, s4, s2, "false", "15:30", s3);
-    /*String username = 'aniket.76907@gmail.com';
-    String password = 'F@6^44709';
+    /*String username = '';
+    String password = '';
 
     final smtpServer = gmail(username, password);
     // Use the SmtpServer class to configure an SMTP server:
