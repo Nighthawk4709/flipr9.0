@@ -35,8 +35,8 @@ class _MailState extends State<Mail> {
     print(s2);
     print(s3);
     print(s4);*/
-    String username = 'aniket.76907@gmail.com';
-    String password = 'F@6^44709';
+    String username = '';
+    String password = '';
 
     final smtpServer = gmail(username, password);
     // Use the SmtpServer class to configure an SMTP server:
