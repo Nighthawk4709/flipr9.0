@@ -33,12 +33,20 @@ class _MailState extends State<Mail> {
   final String s4;
 
   mail() async {
+<<<<<<< HEAD
     //print(s1);
     //print(s2);
     //print(s3);
     //print(s4);
     await widget.api.createMail(s1, s4, s2, "false", "15:30", s3);
     /*String username = '';
+=======
+    /*print(s1);
+    print(s2);
+    print(s3);
+    print(s4);*/
+    String username = '';
+>>>>>>> cc49488f359e13557d9baedc5d5e41527409bdd7
     String password = '';
 
     final smtpServer = gmail(username, password);
