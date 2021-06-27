@@ -2,9 +2,12 @@ import 'package:flipr/homepage/edit.dart';
 import 'package:flipr/homepage/searchBar.dart';
 import 'package:flipr/loginscreens/animation/background_painter.dart';
 import 'package:flutter/material.dart';
+import 'package:flipr/api/api.dart';
+import 'dart:math';
 
 class Send extends StatefulWidget {
-  const Send({Key? key}) : super(key: key);
+  Send({Key? key}) : super(key: key);
+  final MailsApi api = MailsApi();
 
   @override
   _SendState createState() => _SendState();
@@ -12,89 +15,20 @@ class Send extends StatefulWidget {
 
 class _SendState extends State<Send> {
   late GlobalKey<ScaffoldState> _key;
-  final List _time = [
-    "07:30",
-    "21:15",
-    "00:30",
-    "06:40",
-    "10:30",
-    "11:45",
-    "07:30",
-    "21:15",
-    "00:30",
-    "06:40",
-    "10:30",
-    "11:45",
-    "07:30",
-    "21:15",
-    "00:30",
-    "06:40",
-    "10:30",
-    "11:45",
-    "07:30",
-    "21:15",
-    "00:30",
-    "06:40",
-    "10:30",
-    "11:45",
-  ];
-  late List<String> headers;
+  List mails = [];
+  bool loading = true;
 
+  @override
   void initState() {
-    headers = [
-      "Jayvardhan Patil",
-      "Shubham Pandit",
-      "Sourav Singh",
-      "Kunal Kapoor",
-      "Aniket Tiwari",
-      "Yashwardhan",
-      "Acer Supports",
-      "IRCTC",
-      "Working union",
-      "Varun Das",
-      "Jayvardhan Patil",
-      "Shubham Pandit",
-      "Sourav Singh",
-      "Kunal Kapoor",
-      "Aniket Tiwari",
-      "Yashwardhan",
-      "Acer Supports",
-      "IRCTC",
-      "Working union",
-      "Varun Das",
-    ];
+    widget.api.getMails("shubhampandit331@gmail.com").then((data) {
+      setState(() {
+        mails = data;
+        loading = false;
+      });
+    });
     _key = GlobalKey();
     super.initState();
   }
-
-  final List _color = [
-    Colors.purple,
-    Colors.blueAccent,
-    Colors.deepOrange,
-    ExtendedColor.darkOrange,
-    ExtendedColor.darkBlue,
-    Colors.purple,
-    Colors.deepOrange,
-    Colors.blueAccent,
-    Colors.deepOrange,
-    ExtendedColor.darkOrange,
-    ExtendedColor.darkBlue,
-    Colors.green,
-    ExtendedColor.darkBlue,
-    ExtendedColor.darkOrange,
-    Colors.purple,
-    Colors.green,
-    ExtendedColor.darkBlue,
-    ExtendedColor.darkOrange,
-    Colors.purple,
-    Colors.blueAccent,
-    Colors.deepOrange,
-    ExtendedColor.darkOrange,
-    ExtendedColor.darkBlue,
-    Colors.green,
-    ExtendedColor.darkBlue,
-    ExtendedColor.darkOrange,
-  ];
 
   void dispose() {
     // disposing states
@@ -113,16 +47,17 @@ class _SendState extends State<Send> {
       ),
       body: RefreshIndicator(
         onRefresh: () {
-          return Future.delayed(
-            Duration(seconds: 1),
+          return Future(
             () {
               // here you have to update the db
               // on refresh the newest updates will show in the bottom
               // currently for test i have added two headers
-              setState(() {
-                headers.addAll(["Ionic", "Xamarin"]);
+              widget.api.getMails("shubhampandit331@gmail.com").then((data) {
+                setState(() {
+                  mails = data;
+                  loading = false;
+                });
               });
-
               // showing snackbar
               _key.currentState!.showSnackBar(
                 SnackBar(
@@ -150,7 +85,7 @@ class _SendState extends State<Send> {
             Expanded(
                 flex: 14,
                 child: ListView.builder(
-                  itemCount: headers.length,
+                  itemCount: mails.length,
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
                     return Row(
@@ -163,9 +98,10 @@ class _SendState extends State<Send> {
                               child: Center(
                                 child: CircleAvatar(
                                   radius: 24.00,
-                                  backgroundColor: _color[index],
+                                  backgroundColor: Colors.primaries[Random()
+                                      .nextInt(Colors.primaries.length)],
                                   child: Text(
-                                    headers[index][0],
+                                    mails[index]['emailId'][0],
                                     style: TextStyle(fontSize: 20.0),
                                   ),
                                 ),
@@ -187,7 +123,7 @@ class _SendState extends State<Send> {
                                   Row(
                                     children: [
                                       Text(
-                                        headers[index],
+                                        mails[index]['sentTo'],
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 14),
@@ -197,7 +133,7 @@ class _SendState extends State<Send> {
                                   Row(
                                     children: [
                                       Text(
-                                        "lorem isidfks ifsps aksd asdkhadjad adsa\n akjsdhad asdkjahdadl asdkjadhad",
+                                        mails[index]['mailSub'],
                                         style: TextStyle(fontSize: 10),
                                       )
                                     ],
@@ -216,7 +152,7 @@ class _SendState extends State<Send> {
                                 children: [
                                   Row(children: [
                                     Text(
-                                      _time[index],
+                                      mails[index]['time'],
                                       style: TextStyle(fontSize: 12.0),
                                     )
                                   ]),

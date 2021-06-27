@@ -4,9 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
+import 'package:flipr/api/api.dart';
 
 class Mail extends StatefulWidget {
-  const Mail(
+  Mail(
       {Key? key,
       required this.s1,
       required this.s2,
@@ -17,6 +18,7 @@ class Mail extends StatefulWidget {
   final String s2;
   final String s3;
   final String s4;
+  final MailsApi api = MailsApi();
 
   @override
   _MailState createState() => _MailState(s1, s2, s3, s4);
@@ -31,11 +33,20 @@ class _MailState extends State<Mail> {
   final String s4;
 
   mail() async {
+<<<<<<< HEAD
+    //print(s1);
+    //print(s2);
+    //print(s3);
+    //print(s4);
+    await widget.api.createMail(s1, s4, s2, "false", "15:30", s3);
+    /*String username = '';
+=======
     /*print(s1);
     print(s2);
     print(s3);
     print(s4);*/
     String username = '';
+>>>>>>> cc49488f359e13557d9baedc5d5e41527409bdd7
     String password = '';
 
     final smtpServer = gmail(username, password);
@@ -63,7 +74,7 @@ class _MailState extends State<Mail> {
         print('Problem: ${p.code}: ${p.msg}');
       }
     }
-    // DONE
+    // DONE*/
   }
 
   @override
